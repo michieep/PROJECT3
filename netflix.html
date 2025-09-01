@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix India</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      background: black;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Background video */
+    
+      font-size: 18px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 260px;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 50px;
+      font-family: fantasy;
+    }
+
+    .hero h3 {
+      margin-top: 20px;
+      font-size: 25px;
+    }
+
+    .get-started {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 15px 25px;
+      background: red;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }.back-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: right;
+      gap: 30px;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      color: beige;
+      text-decoration: none;}
+
+    /* Responsive part */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+      .hero h3 {
+        font-size: 18px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .get-started {
+        font-size: 16px;
+        padding: 10px 15px;
+      }}
+      footer div{
+                  border: 2px;
+                  background-color: transparent;
+      }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <video src="video/video.mp4" class="back-video" autoplay muted loop></video>
+
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="seriesnet.html">STREAM NOW</a>
+      <a href="#about">ABOUT US</a>
+      <a href="contact">CONTACT US</a>
+    </nav>
+
+    <div class="hero">
+      <h2 style="text-align: center; margin-top: 300px">Unlimited movies, TV shows and more.</h2>
+      <h3 style="text-align: center;">Starts at ₹149. Cancel at any time.</h3>
+      <a href="login.html" class="get-started" style="margin-left: 690px;">GET STARTED</a>
+      <h3 style="text-align: center;">OR</h3>
+      <a href="seriesnet.html" class="get-started" style="text-align: center;margin-left: 690px">SKIP LOGIN IN</a>
+    </div>
+  </header>
+  <footer id="contact">
+                
+                <div style="border: 2px solid white;">
+                    <H2 style="color: white;text-align: center; text-shadow: 5px; font-size: 25px; text-decoration: double; text-decoration-color: beige;">CONTACT</H2><br>
+                    <h2 style="text-align: center; color: white; font-size: 35px;">STREAM HUB</h2>
+                    <br>
+                    <h3 style="color: bisque; margin-left: 690px; font-size: 25px;">Binge alert!<br></a></h3> 
+                    <h3 style="text-align: center; font-size: 21px; color: bisque;">🍿 Access Netflix, Disney Hostar,Jio Hotstar and many more- all in one place.Stay tuned, stay logged in on <a href="index.html" >STREAM HUB</a></h3><br>
+        <H2 style="color:rgb(230, 130, 8); text-align: center; font-size: 30px;">HELP CENTER</H2><br>
+                     <h3 style="color: bisque; text-align: center; font-size: 20px;">123 School Road, City</h3>
+                     <h3 style="color: bisque; text-align: center; font-size: 20px;">@streamhubgmail.com</h3>
+                     <h3 style="color: bisque; text-align: center; font-size: 20px;">+91 888 877 1234</h3>
+                     <hr>
+                     <h2 style="color: rgb(230, 130, 8); text-align: center;">@MICHELLE PHILLIPS STREAM HUB. ALL RIGHTS RESERVED</h2>
+            </div>
+            </footer>
+
+</body>
+</html>

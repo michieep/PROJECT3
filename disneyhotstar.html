@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix India</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      background: black;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Background video */
+    .back-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: right;
+      gap: 30px;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      color: beige;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 260px;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 50px;
+      font-family: fantasy;
+    }
+
+    .hero h3 {
+      margin-top: 20px;
+      font-size: 25px;
+    }
+
+    .get-started {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 15px 25px;
+      background: red;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Responsive part */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+      .hero h3 {
+        font-size: 18px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .get-started {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <video src="video/f8ae3e1bac2b689a0f4c9c9f8eff5f45.mp4" class="back-video" autoplay muted loop></video>
+
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="seriesnet.html">STREAM NOW</a>
+      <a href="#about">ABOUT US</a>
+      <a href="#contact">CONTACT US</a>
+    </nav>
+
+    <div class="hero">
+      <h2>Unlimited movies, TV shows and more.</h2>
+      <h3>Starts at ₹199. Cancel at any time.</h3>
+      <a href="login.html" class="get-started">GET STARTED</a>
+      <h3>OR</h3>
+      <a href="disney.html" class="get-started">SKIP LOGIN IN</a>
+    </div>
+  </header>
+</body>
+</html>
