@@ -1,0 +1,151 @@
+/* login.css */
+
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #340105, #0c012e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #fff;
+    padding: 15px; /* for small screens */
+}
+
+/* Form box */
+form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.397);
+    width: 100%;
+    max-width: 400px; /* stops form from stretching too much */
+    backdrop-filter: blur(10px);
+    text-align: center;
+
+    /* Animation */
+    animation: slidein 1s ease forwards;
+}
+
+/* Slide-in animation */
+@keyframes slidein {
+    from {
+        transform: translateY(-30px); /* smooth top-down */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: beige;
+}
+
+/* Labels */
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* Input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    transition: all 0.4s ease;
+}
+
+/* Hover effect with animation */
+button:hover {
+    background: linear-gradient(180deg, #58d8b4, #24dd2a);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Forget password link */
+nav a {
+    font-size: 13px;
+    color: #00c6ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding-bottom: 5px;
+}
+nav a:hover {
+    color: #cdeeef;
+}
+
+/* Sign up text */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+p a {
+    color: #00c6ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+p a:hover {
+    color: #cdeeef;
+}
+
+/* ----------------- Responsive ----------------- */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    form {
+        padding: 25px;
+        border-radius: 20px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* For very small devices like mobiles */
+@media (max-width: 480px) {
+    form {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    label {
+        font-size: 12px;
+    }
+    p {
+        font-size: 12px;
+    }
+}

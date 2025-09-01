@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STREAM HUB</title>
+
+  <!-- NOTE: you can move styles to style.css later; this keeps everything working now -->
+  <style>
+    /* reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html,body { height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; color: beige; }
+
+    /* background video (keeps user video path) */
+    .back-video {
+      position: absolute;
+      inset: 0;                 /* top:0; right:0; bottom:0; left:0; */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;        /* preserve aspect, fill screen */
+      z-index: -1;
+    }
+
+    /* header + nav wrapper */
+    header { position: relative; width: 100%; padding: 18px 24px; }
+
+    /* right-aligned nav on desktop */
+    nav { position: absolute; top: 18px; right: 24px; }
+    .nav-list { list-style: none; display: flex; gap: 22px; align-items: center; }
+
+    .nav-list a {
+      color: beige;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 6px 8px;
+      white-space: nowrap;
+      transition: color .18s, transform .12s;
+      display: inline-block;
+    }
+    .nav-list a:hover { color: #8fd7ff; transform: translateY(-1px); }
+
+    /* STREAMING APPS dropdown (horizontal) */
+    .nav-item { position: relative; }             /* parent for dropdown */
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 8px);                      /* below the nav item */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px; 
+      background: rgba(0,0,0,0.6);
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      white-space: nowrap;
+      z-index: 20;
+    }
+    .nav-item:hover .dropdown {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(4px);
+    }
+    .dropdown a { color: beige; font-size: 15px; padding: 6px 8px; text-decoration: none; border-radius:6px; }
+    .dropdown a:hover { background: #fff; color: #000; }
+
+    /* site title (centered) */
+    .brand {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .brand h1 {
+      font-size: 52px;
+      color: #e6f1f8;
+      text-shadow: 1px 1px 2px rgba(0,0,0,.8), 0 0 18px rgba(15,66,203,.12);
+      margin-bottom: 8px;
+    }
+
+    /* apps area - centered vertically and horizontally */
+    .apps-wrap {
+      min-height: calc(100vh - 220px); /* leaves space for header/title */
+      display: flex;
+      align-items: center;     /* center vertically */
+      justify-content: center; /* center horizontally */
+      padding: 20px;
+    }
+
+    .apps {
+      display: flex;
+      gap: 110px;              /* gap between Netflix, Disney, Jio */
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .app {
+      text-align: center;
+      position: relative;
+      transition: transform .22s ease, box-shadow .22s ease;
+      cursor: default;
+    }
+
+    .app img {
+      width: 210px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 50%;      /* you asked for border-radius */
+      display: block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .app h2 {
+      color: beige;
+      margin-top: 12px;
+      font-size: 22px;
+      letter-spacing: .6px;
+    }
+
+    /* hover effect for app icons */
+    .app:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 14px 30px rgba(0,0,0,0.6); }
+    .app:hover img { transform: scale(1.08); }
+
+    /* stream-now style (if you use buttons) */
+    .stream-btn {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: beige;
+      border: 2px solid #fff;
+      padding: 8px 18px;
+      border-radius: 28px;
+      font-size: 16px;
+      transition: background .18s, color .18s;
+    }
+    .stream-btn:hover { background: #aa4b98; color: #000; }
+
+    /* small-screen adjustments */
+    @media (max-width: 920px) {
+      .apps { gap: 60px; }
+      .brand h1 { font-size: 44px; margin-top: 36px; }
+      nav { right: 16px; }
+    }
+
+    @media (max-width: 768px) {
+      /* nav centers on small screens so links don't disappear */
+      nav { position: static; display: flex; justify-content: center; padding: 12px; }
+      .nav-list { gap: 14px; }
+      .dropdown { top: calc(100% + 6px); left: 50%; transform: translateX(-50%); }
+      .apps { flex-direction: column; gap: 36px; }
+      .app img { width: 160px; height: 160px; }
+      .brand h1 { font-size: 38px; margin-top: 18px; }
+      .apps-wrap { min-height: auto; padding: 40px 18px 80px; }
+    }
+
+    @media (max-width: 420px) {
+      .dropdown { gap: 8px; padding: 6px 8px; }
+      .nav-list a { font-size: 15px; }
+      .brand h1 { font-size: 30px; }
+      .app img { width: 140px; height: 140px; }
+      .app h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <video class="back-video" autoplay muted loop playsinline>
+    <source src="video/video3.mp4">
+  </video>
+
+  <header>
+    <!-- NAV (right on desktop). STREAMING APPS contains horizontal dropdown on hover) -->
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#home">HOME</a></li>
+
+        <!-- streaming nav item with horizontal dropdown -->
+        <li class="nav-item">
+          <a href="#streaming">STREAMING APPS ▾</a>
+          <div class="dropdown" aria-hidden="true">
+            <a href="netflix.html">Netflix</a>
+            <a href="disneyhotstar.html">Disney Hotstar</a>
+            <a href="jiohotstar.html">Jio Hotstar</a>
+          </div>
+        </li>
+
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <div class="brand">
+    <h1 style="font-size: 60px; color: rgb(230,241,248);text-shadow: 1px1px2px black;">STREAM HUB</h1>
+  </div>
+
+  <!-- Apps area (centered vertically/horizontally) -->
+  <main class="apps-wrap">
+    <section class="apps" id="streaming">
+      <div class="app">
+        <!-- update these image filenames to match your actual files -->
+        <img src="img/download.jpeg" alt="Netflix logo (download.jpeg)">
+        <h2>NETFLIX</h2>
+        <a class="stream-btn" href="netflix.html">Stream now</a>
+      </div>
+
+      <div class="app">
+        <img src="img/Disney+ hotstar💫.jpeg" alt="Disney Hotstar logo">
+        <h2>DISNEY HOTSTAR</h2>
+        <a class="stream-btn" href="disneyhotstar.html">Stream now</a>
+      </div>
+
+      <div class="app">
+        <img src="img/Jio hotstar.jpeg" alt="Jio Hotstar logo">
+        <h2>JIO HOTSTAR</h2>
+        <a class="stream-btn" href="jiohotstar.html">Stream now</a>
+      </div>
+    </section>
+  </main>
+  
+
+</body>
+</html>
